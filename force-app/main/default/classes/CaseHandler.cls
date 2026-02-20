@@ -7,12 +7,6 @@ public class CaseHandler {
         if (c.Priority == 'High' && oldCase.Priority != 'High') {
             c.Status = 'Escalated';
         }
-    }
-}
-
-public static void handleBeforeUpdate(List<Case> updatedCases, Map<Id, Case> oldMap) {
-    for (Case c : updatedCases) {
-        Case oldCase = oldMap.get(c.Id);
 
         // Scenario: Status changed to Closed
         if (c.Status == 'Closed' && oldCase.Status != 'Closed') {
@@ -20,8 +14,7 @@ public static void handleBeforeUpdate(List<Case> updatedCases, Map<Id, Case> old
         }
     }
 }
-
-public static void handleAfterUpdate(List<Case> updatedCases, Map<Id, Case> oldMap) {
+     public static void handleAfterUpdate(List<Case> updatedCases, Map<Id, Case> oldMap) {
 
     List<Task> tasksToInsert = new List<Task>();
 
@@ -44,4 +37,4 @@ public static void handleAfterUpdate(List<Case> updatedCases, Map<Id, Case> oldM
         insert tasksToInsert;
     }
 }
-}
+    }
